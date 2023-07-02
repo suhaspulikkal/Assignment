@@ -1,13 +1,38 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.card {
+  border-radius: 10%;
+  width: 200px;
+  padding: 10px;
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card img {
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 20%;
+  width: 60%;
+
 }
+
+.listId{
+  background-color: black;
+  border-radius: 80%;
+  color: white;
+  padding: 8px;
+  position: relative;
+  top: -220px;
+  left: 70px;
+}
+
+.searchbar{
+  margin: 10px;
+  border-radius: 5%;
+  background-color: red;
+  width: 250px;
+  height: 30px;
+  display: flex;
+}
+
+.searchInput{
+  width: 100%;
+}
+

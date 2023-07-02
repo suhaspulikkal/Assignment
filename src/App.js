@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import List from "./List";
+import {Search} from "./Search";
+import  { useEffect, useState } from 'react'
+
+
+function filterData(x){
+  console.log(x.first_name)
+  if(x.first_name.includes('R') ){
+    return x
+  }
+}
 
 function App() {
+    const [records, setRecords] = useState([])
+
+    useEffect(()=>{
+      fetch('https://reqres.in/api/users?page=2')
+      .then(response => response.json())
+      .then(data => setRecords(data.data))
+      .catch(err => console.log(err))
+    }, []);
+
+    // const inputText = document.getElementById("inputSearch");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Search />
+      
+    {/* {console.log(document.getElementById("inputSearch"))} */}
+
+      <ul>
+          {records.filter(filterData).map((x,index)=>{
+            return (
+              <List key={index} title={x.first_name} url={x.avatar} id={x.id} />
+            )
+          })}
+      </ul>
+      
+      
     </div>
   );
 }
