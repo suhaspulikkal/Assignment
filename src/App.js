@@ -16,6 +16,7 @@ function App() {
     console.log(query)
   return (
     <div>
+      <h1>Internship Assigment</h1>
       <input className="searchBar" type="search" placeholder="Search..." onChange={e=>setQuery(e.target.value)}/>
 
       <ul>
