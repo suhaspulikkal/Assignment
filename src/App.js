@@ -1,17 +1,10 @@
 import List from "./List";
-import {Search} from "./Search";
-import  { useEffect, useState } from 'react'
-
-
-function filterData(x){
-  console.log(x.first_name)
-  if(x.first_name.includes('R') ){
-    return x
-  }
-}
+// import {Search} from "./Search";
+import  { useEffect, useState } from 'react';
 
 function App() {
     const [records, setRecords] = useState([])
+    const [query, setQuery] = useState("")
 
     useEffect(()=>{
       fetch('https://reqres.in/api/users?page=2')
@@ -20,26 +13,20 @@ function App() {
       .catch(err => console.log(err))
     }, []);
 
-    // const inputText = document.getElementById("inputSearch");
-
+    console.log(query)
   return (
-    <div className="App">
-
-      <Search />
-      
-    {/* {console.log(document.getElementById("inputSearch"))} */}
+    <div>
+      <input className="searchBar" type="search" placeholder="Search..." onChange={e=>setQuery(e.target.value)}/>
 
       <ul>
-          {records.filter(filterData).map((x,index)=>{
-            return (
-              <List key={index} title={x.first_name} url={x.avatar} id={x.id} />
-            )
-          })}
-      </ul>
-      
-      
+        {records.filter(x=>x.first_name.toLowerCase().includes(query)).map(x=>{
+          return <List key={x.id} url={x.avatar} first_name={x.first_name} id={x.id} />
+        })}
+      </ul> 
+    
+
     </div>
-  );
+  )
 }
 
 export default App;
